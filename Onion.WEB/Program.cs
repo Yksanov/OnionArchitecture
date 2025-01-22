@@ -47,6 +47,8 @@ builder.Services.AddTransient<IScheduleRepository, ScheduleRepository>();
 builder.Services.AddTransient<IScheduleService, ScheduleService>();
 builder.Services.AddTransient<INotificationRepository, NotificationRepository>();
 builder.Services.AddTransient<INotificationService, NotificationService>();
+builder.Services.AddTransient<IOperationRepository, OperationRepository>();
+builder.Services.AddTransient<IOperationService, OperationService>();
 
 var app = builder.Build();
 
