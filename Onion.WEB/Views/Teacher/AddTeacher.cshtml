@@ -1,0 +1,51 @@
+@model OnionArhitectura.ViewModels.TeacherViewModel
+
+@{
+    ViewData["Title"] = "Добавить учителя";
+}
+
+<div class="bg-dark text-center pt-5 pb-4 form-border">
+    <h3 class="text-white mb-4"><i class="fa-solid fa-user-graduate monday-school-color-blue"></i> <span
+            class="monday-school-color-gradient">Заполните форму для добавления нового учителя</span></h3>
+    <form asp-action="AddTeacher" asp-controller="Teacher" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-validation-error mb-4"></div>
+        <div class="form_row mb-3">
+            <label class="col-5">
+                <input type="text" asp-for="FirstName" class="form-control" placeholder="Введите имя учителя..."/>
+                <span asp-validation-for="FirstName" class="text-validation-error"></span>
+            </label>
+        </div>
+
+        <div class="form_row mb-3">
+            <label class="col-5">
+                <input type="text" asp-for="LastName" class="form-control" placeholder="Введите фамилию учителя..."/>
+                <span asp-validation-for="LastName" class="text-validation-error"></span>
+            </label>
+        </div>
+
+        <div class="form_row mb-3">
+            <label class="col-5">
+                <input type="text" asp-for="LessonNameId" class="form-control" placeholder="Укажите ID урока..."/>
+                <span asp-validation-for="LessonNameId" class="text-validation-error"></span>
+            </label>
+        </div>
+
+        <div class="form_row mb-3">
+            <label class="col-5">
+                <select asp-for="BranchId" asp-items="ViewBag.Branches" class="form-control">
+                    <option value="">Выберите филиал</option>
+                </select>
+                <span asp-validation-for="LessonNameId" class="text-validation-error"></span>
+            </label>
+        </div>
+
+        <div class="form-group py-2">
+            <button type="submit" class="btn btn-outline-light mb-3 w-25"><i class="fa-solid fa-user-plus monday-school-color-pink"></i> <strong>Добавить</strong></button>
+            <a asp-action="AllTeachers" class="btn btn-secondary">Назад</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

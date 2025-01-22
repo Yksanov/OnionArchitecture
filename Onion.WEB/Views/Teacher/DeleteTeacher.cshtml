@@ -1,0 +1,20 @@
+@model Onion.Domain.Entities.Teacher
+
+@{
+    ViewData["Title"] = "Удалить учителя";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="alert alert-warning">
+    <h5>Вы уверены, что хотите удалить этого учителя?</h5>
+    <p>Имя: @Model.FirstName</p>
+    <p>Фамилия: @Model.LastName</p>
+    <p>Филиал: @Model.Branch?.Name</p>
+</div>
+
+<form asp-action="DeleteTeacher" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a asp-action="AllTeachers" class="btn btn-secondary">Отмена</a>
+</form>

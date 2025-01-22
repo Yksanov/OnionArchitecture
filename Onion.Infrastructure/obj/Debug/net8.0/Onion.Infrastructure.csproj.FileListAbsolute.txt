@@ -1,0 +1,17 @@
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\bin\Debug\net8.0\Onion.Infrastructure.deps.json
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\bin\Debug\net8.0\Onion.Infrastructure.runtimeconfig.json
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\bin\Debug\net8.0\Onion.Infrastructure.dll
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\bin\Debug\net8.0\Onion.Infrastructure.pdb
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\bin\Debug\net8.0\Onion.Domain.dll
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\bin\Debug\net8.0\Onion.Domain.pdb
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\Onion.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\Onion.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\Onion.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\Onion.Infrastructure.AssemblyInfo.cs
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\Onion.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\Onion.In.67FFDB3E.Up2Date
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\Onion.Infrastructure.dll
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\refint\Onion.Infrastructure.dll
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\Onion.Infrastructure.pdb
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\Onion.Infrastructure.genruntimeconfig.cache
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Infrastructure\obj\Debug\net8.0\ref\Onion.Infrastructure.dll
