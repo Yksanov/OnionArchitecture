@@ -51,6 +51,8 @@ builder.Services.AddTransient<IOperationRepository, OperationRepository>();
 builder.Services.AddTransient<IOperationService, OperationService>();
 builder.Services.AddTransient<IOperationTypeRepository, OperationTypeRepository>();
 builder.Services.AddTransient<IOperationTypeService, OperationTypeService>();
+builder.Services.AddTransient<INotificationTypeRepository, NotificationTypeRepository>();
+builder.Services.AddTransient<INotificationTypeService, NotificationTypeService>();
 
 var app = builder.Build();
 
