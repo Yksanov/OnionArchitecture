@@ -3,6 +3,7 @@ using Moq;
 using Onion.Application.Interfaces;
 using Onion.Domain.Entities;
 using OnionArhitectura.Controllers;
+using OnionArhitectura.ViewModels;
 using Xunit;
 
 namespace Onion.Tests;
@@ -35,5 +36,25 @@ public class RequestControllerTests
         Assert.Equal(requests, viewResult.Model);
         var model = viewResult.Model as List<Request>;
         Assert.Equal(requests.Count, model.Count);
+    }
+
+    [Fact]
+    public async Task CreateRequestReturnsViewWithRequestToAllRequests()
+    {
+        RequestViewModel validModel = new RequestViewModel()
+        {
+            FirstName = "Eldos",
+            LastName = "Yksanov",
+            PhoneNumber = "123456789",
+            GroupTypeId = 1,
+            LessonNameId = 1,
+            PreferredTime = DateTime.Now,
+        };
+        
+        var result = await _controller.CreateRequest(validModel);
+        
+        var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+        Assert.NotNull(redirectResult);
+        Assert.Equal("AllRequests", redirectResult.ActionName);
     }
 }
