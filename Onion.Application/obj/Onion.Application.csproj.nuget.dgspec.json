@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Application\\Onion.Application.csproj": {}
+    "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Application\\Onion.Application.csproj": {}
   },
   "projects": {
-    "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Application\\Onion.Application.csproj": {
+    "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Application\\Onion.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Application\\Onion.Application.csproj",
+        "projectUniqueName": "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Application\\Onion.Application.csproj",
         "projectName": "Onion.Application",
-        "projectPath": "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Application\\Onion.Application.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Application\\obj\\",
+        "projectPath": "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Application\\Onion.Application.csproj",
+        "packagesPath": "C:\\Users\\e.yksanov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\e.yksanov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Domain\\Onion.Domain.csproj": {
-                "projectPath": "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Domain\\Onion.Domain.csproj"
+              "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Domain\\Onion.Domain.csproj": {
+                "projectPath": "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Domain\\Onion.Domain.csproj"
               }
             }
           }
@@ -64,21 +69,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Domain\\Onion.Domain.csproj": {
+    "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Domain\\Onion.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Domain\\Onion.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Domain\\Onion.Domain.csproj",
         "projectName": "Onion.Domain",
-        "projectPath": "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Domain\\Onion.Domain.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Attractor\\month#2\\OnionArchitecture\\Onion.Domain\\obj\\",
+        "projectPath": "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Domain\\Onion.Domain.csproj",
+        "packagesPath": "C:\\Users\\e.yksanov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\e.yksanov\\RiderProjects\\OnionArhitectura\\Onion.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\e.yksanov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -86,6 +95,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -130,7 +140,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

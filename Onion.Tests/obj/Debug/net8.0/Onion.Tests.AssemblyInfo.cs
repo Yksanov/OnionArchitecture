@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Onion.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+276bf81e91bf007ee557979aca3829ccdfd9f77b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+384b7c5cd51adce3affe81f2642a14f248f588b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Onion.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Onion.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

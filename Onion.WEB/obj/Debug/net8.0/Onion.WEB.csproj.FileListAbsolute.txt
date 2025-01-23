@@ -122,3 +122,4 @@ C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.WEB\bin\Debug\net8.0\zh-
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.WEB\bin\Debug\net8.0\Castle.Core.dll
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.WEB\bin\Debug\net8.0\Moq.dll
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.WEB\bin\Debug\net8.0\Moq.EntityFrameworkCore.dll
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.WEB\obj\Debug\net8.0\Onion.WEB.sourcelink.json

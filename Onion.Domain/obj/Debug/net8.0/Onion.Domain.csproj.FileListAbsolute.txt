@@ -10,3 +10,4 @@ C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.pdb
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\ref\Onion.Domain.dll
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.csproj.AssemblyReference.cache
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.sourcelink.json
