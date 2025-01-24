@@ -57,4 +57,53 @@ public class RequestControllerTests
         Assert.NotNull(redirectResult);
         Assert.Equal("AllRequests", redirectResult.ActionName);
     }
+
+    [Fact]
+    public async Task CreateRequestInValidModelReturnsViewWithModel()
+    {
+        _controller.ModelState.AddModelError("FirstName", "Необходимо заполнить это поле");
+        var invalidModel = new RequestViewModel();
+
+        var result = await _controller.CreateRequest(invalidModel);
+
+        var viewResult = Assert.IsType<ViewResult>(result);
+        Assert.NotNull(viewResult);
+        Assert.Equal(invalidModel, viewResult.Model);
+    }
+
+    [Fact]
+    public async Task RemoveRequestValidIdRedirectsToAllRequests()
+    {
+        var requestId = 1;
+        var mockRequest = new Request { Id = requestId, FirstName = "Daniel", LastName = "Tom" };
+        _requestServiceMock.Setup(service => service.GetRequestByIdAsync(requestId)).ReturnsAsync(mockRequest);
+
+        var result = await _controller.RemoveRequest(requestId);
+        
+        var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+        Assert.NotNull(redirectResult);
+        Assert.Equal("AllRequests", redirectResult.ActionName);
+        _requestServiceMock.Verify(service => service.RemoveRequestAsync(mockRequest), Times.Once);
+    }
+
+    [Fact]
+    public async Task RemoveRequestInValidIdReturnsNotFound()
+    {
+        var result = await _controller.RemoveRequest(null);
+        
+        Assert.NotNull(result);
+        Assert.IsType<NotFoundResult>(result);
+    }
+
+    [Fact]
+    public async Task RemoveRequestNonExistentRequestReturnsNotFound()
+    {
+        var requestId = 1;
+        _requestServiceMock.Setup(service => service.GetRequestByIdAsync(requestId)).ReturnsAsync((Request)null);
+        
+        var result = await _controller.RemoveRequest(requestId);
+        
+        Assert.NotNull(result);
+        Assert.IsType<NotFoundResult>(result);
+    }
 }

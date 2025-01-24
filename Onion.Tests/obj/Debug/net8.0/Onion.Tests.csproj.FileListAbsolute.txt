@@ -131,3 +131,4 @@ C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\r
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.pdb
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.genruntimeconfig.cache
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\ref\Onion.Tests.dll
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.sourcelink.json
