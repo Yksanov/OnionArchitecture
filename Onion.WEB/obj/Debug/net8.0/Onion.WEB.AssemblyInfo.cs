@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Onion.WEB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+faed7a657f123c2818b5070dd1b4c6c67eaef059")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc8545a1b0b7ee347baa0e9aa63a49d9748b927f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Onion.WEB")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Onion.WEB")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
