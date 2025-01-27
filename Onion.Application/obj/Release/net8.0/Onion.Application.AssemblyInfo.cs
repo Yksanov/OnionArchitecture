@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Onion.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc8545a1b0b7ee347baa0e9aa63a49d9748b927f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82b2815e6baecbfb29b4a4ebed3481b17bdb6060")]
 [assembly: System.Reflection.AssemblyProductAttribute("Onion.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Onion.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
