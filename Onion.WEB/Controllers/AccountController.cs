@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Onion.Domain.Entities;
 using OnionArhitectura.ViewModels;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
@@ -18,6 +17,89 @@ public class AccountController : Controller
         _userManager = userManager;
         _signInManager = signInManager;
     }
+
+    [Authorize(Roles = "director")]
+    public async Task<IActionResult> AllUsers()
+    {
+        var users = _userManager.Users.ToList();
+        var userRoles = new Dictionary<int, string>();
+
+        foreach (var user in users)
+        {
+            var roles = await _userManager.GetRolesAsync(user);
+            userRoles[user.Id] = string.Join(", ", roles);
+        }
+        
+        ViewBag.UsersRoles = userRoles;
+        return View();
+    }
+
+
+    [HttpPost]
+    [Authorize(Roles = "director")]
+    public async Task<IActionResult> DeleteUser(int id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+        
+        var user = _userManager.Users.FirstOrDefault(u => u.Id == id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        await _userManager.DeleteAsync(user);
+        return RedirectToAction("AllUsers");
+    }
+
+
+    [HttpPost]
+    [Authorize(Roles = "director")]
+    public async Task<IActionResult> BlockUser(int id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var user = _userManager.Users.FirstOrDefault(u => u.Id == id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        user.LockoutEnd = DateTimeOffset.MaxValue;
+        await _userManager.UpdateAsync(user);
+        return RedirectToAction("AllUsers");
+    }
+
+
+    [HttpPost]
+    [Authorize(Roles = "director")]
+    public async Task<IActionResult> UnblockUser(int id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var user = _userManager.Users.FirstOrDefault(u => u.Id == id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        if (user.LockoutEnd == null)
+        {
+            return RedirectToAction("AllUsers", "Account");
+        }
+
+        user.LockoutEnd = null;
+        await _userManager.UpdateAsync(user);
+        return RedirectToAction("AllUsers");
+    }
+    
 
     [HttpGet]
     public IActionResult Login(string returnUrl = "")
