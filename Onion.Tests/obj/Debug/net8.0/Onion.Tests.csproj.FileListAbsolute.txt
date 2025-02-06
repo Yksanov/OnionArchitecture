@@ -125,10 +125,10 @@ C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\O
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.AssemblyInfoInputs.cache
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.AssemblyInfo.cs
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.csproj.CoreCompileInputs.cache
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.sourcelink.json
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Te.FED14196.Up2Date
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.dll
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\refint\Onion.Tests.dll
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.pdb
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.genruntimeconfig.cache
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\ref\Onion.Tests.dll
-C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Tests\obj\Debug\net8.0\Onion.Tests.sourcelink.json

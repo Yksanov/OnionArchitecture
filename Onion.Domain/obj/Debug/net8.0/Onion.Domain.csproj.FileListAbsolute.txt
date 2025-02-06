@@ -1,13 +1,13 @@
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\bin\Debug\net8.0\Onion.Domain.deps.json
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\bin\Debug\net8.0\Onion.Domain.dll
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\bin\Debug\net8.0\Onion.Domain.pdb
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.csproj.AssemblyReference.cache
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.AssemblyInfoInputs.cache
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.AssemblyInfo.cs
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.csproj.CoreCompileInputs.cache
+C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.sourcelink.json
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.dll
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\refint\Onion.Domain.dll
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.pdb
 C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\ref\Onion.Domain.dll
-C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.csproj.AssemblyReference.cache
-C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.Domain\obj\Debug\net8.0\Onion.Domain.sourcelink.json
