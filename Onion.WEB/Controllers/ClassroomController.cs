@@ -67,4 +67,16 @@ public class ClassroomController : Controller
         await _classroomService.RemoveClassroomAsync(classroom);
         return RedirectToAction("AllClassrooms");
     }
+
+    [HttpPost]
+    public async Task<IActionResult> EditClassroom(Classroom classroom)
+    {
+        if (classroom == null)
+        {
+            return NotFound();
+        }
+
+        await _classroomService.UpdateClassroomAsync(classroom);
+        return RedirectToAction("AllClassrooms");
+    }
 }

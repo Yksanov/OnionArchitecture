@@ -18,6 +18,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\e.yksanov\RiderProjects\OnionArhitectura\Onion.WEB
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Account/AllUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBbGxVc2Vycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Branch/AllBranches.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXEFsbEJyYW5jaGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Classroom/AllClassrooms.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tXEFsbENsYXNzcm9vbXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,6 +44,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Student/AllStudents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxBbGxTdHVkZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Student/CreateStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxDcmVhdGVTdHVkZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Student/EditStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxFZGl0U3R1ZGVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Student/RemoveStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxSZW1vdmVTdHVkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/e.yksanov/RiderProjects/OnionArhitectura/Onion.WEB/Views/Teacher/AddTeacher.cshtml]

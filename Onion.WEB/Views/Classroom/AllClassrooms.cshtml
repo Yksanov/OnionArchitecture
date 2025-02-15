@@ -1,0 +1,322 @@
+@model List<Onion.Domain.Entities.Classroom>
+
+@{
+    ViewBag.Title = "All Classrooms";
+}
+
+<div class="mt-3">
+    <div class="d-flex justify-content-end mb-2">
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#createClassroomModal">
+            <i class="fa-solid fa-plus"></i> Добавить новую аудиторию
+        </button>
+    </div>
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table id="classrooms-table" class="display">
+                <thead class="bg-dark">
+                <tr>
+                    <th class="text-white text-center" style="width: 16%;">Id аудитории</th>
+                    <th class="text-white text-center" style="width: 16%;">Вместимость</th>
+                    <th class="text-white text-center" style="width: 16%;">Доступность</th>
+                    <th class="text-white text-center" style="width: 16%;">Филиал</th>
+                    <th class="text-white text-center" style="width: 16%;">Количество связанных групп</th>
+                    <th class="monday-school-color-blue text-center" style="width: 16%; padding-right: 10px !important;">Действия</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
+                </tfoot>
+                <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td class="text-center">@c.Id</td>
+                        <td class="text-center">@c.Capacity</td>
+                        <td class="@(c.IsAvailable ? "text-center" : "text-danger") text-center fw-bolder">
+                            @(c.IsAvailable ? "Доступна" : "Недоступна")
+                        </td>
+                        <td class="text-center">@c.Branch.Name</td>
+                        <td class="text-center">@c.Groups.Count</td>
+                        <td>
+                            <div class="dropdown text-center">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="actionsDropdown" data-bs-toggle="dropdown">
+                                    <i class="fa-solid fa-bars"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editClassroomModal"
+                                                data-id="@c.Id"
+                                                data-capacity="@c.Capacity"
+                                                data-isavailable="@c.IsAvailable"
+                                                data-branchid="@c.Branch.Id"
+                                                data-groupscount="@c.Groups.Count">
+                                            <i class="fa-solid fa-pen-to-square"></i> Редактировать
+                                        </button>
+                                    </li>
+
+                                    <li>
+                                        <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteClassroomModal"
+                                                data-id="@c.Id"
+                                                data-capacity="@c.Capacity"
+                                                data-branch="@c.Branch.Name">
+                                            <i class="fa-solid fa-trash me-2"></i> Удалить
+                                        </button>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <h2 class="mt-3 text-center">В данный момент нет аудитория.</h2>
+    }
+</div>
+<div class="modal fade" id="editClassroomModal" tabindex="-1" aria-labelledby="editClassroomModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header bg-white">
+                <h1 class="modal-title monday-school-color-gradient fs-5" id="editClassroomModalLabel">Редактировать аудиторию</h1>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editClassroomForm" method="post" asp-action="EditClassroom" novalidate>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="editClassroomId" class="form-label text-white">ID аудитории</label>
+                        <input name="Id" id="editClassroomId" class="form-control" readonly/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="editCapacity" class="form-label text-white">Вместимость</label>
+                        <input type="text" id="editCapacity" name="capacity" class="form-control"
+                               pattern="^[1-9]\d*$"
+                               title="Вместимость может быть только положительным числом" required/>
+                        <div class="invalid-feedback text-danger">
+                            Вместимость может быть только положительным числом.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="editIsAvailable" class="form-label text-white">Доступность</label>
+                        <select id="editIsAvailable" name="IsAvailable" class="form-select" required>
+                            <option value="true">Доступна</option>
+                            <option value="false">Недоступна</option>
+                        </select>
+                        <div class="invalid-feedback text-danger">Пожалуйста, выберите доступность.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="editBranch" class="form-label text-white">Филиал</label>
+                        <select name="BranchId" id="editBranch" class="form-select" required>
+                            @foreach (var b in ViewBag.Branches)
+                            {
+                                <option value="@b.Id">@b.Name</option>
+                            }
+                        </select>
+
+                        <div class="invalid-feedback text-danger">
+                            Пожалуйста, выберите филиал.
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="submit" class="btn btn-outline-light monday-school-color-blue">Сохранить изменения</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteClassroomModal" tabindex="-1" aria-labelledby="deleteClassroomModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header bg-white">
+                <h1 class="modal-title monday-school-color-gradient fs-5" id="deleteClassroomModalLabel">Удалить аудиторию</h1>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="deleteClassroomForm" method="post" asp-action="RemoveClassroom">
+                <div class="modal-body">
+                    <p class="text-white">Вы уверены, что хотите удалить аудиторию (Вместимость: <span id="deletecapacity"></span>, Филиал: <span id="deletebranch"></span>)? Действие необратимо!</p>
+                    <input type="hidden" name="Id" id="deleteClassroomId"/>
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="submit" class="btn btn-outline-danger monday-school-color-blue">Удалить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createClassroomModal" tabindex="-1" aria-labelledby="createClassroomModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header bg-white">
+                <h1 class="modal-title monday-school-color-gradient fs-5" id="createClassroomModalLabel">Добавить аудиторию</h1>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div>
+                <div class="modal-body">
+                    <form method="post" asp-action="CreateClassroom" id="classroomForm" novalidate>
+                        @*'novalidate' отключает встроенную браузерную валидацию для работы черезт скрипт *@
+                        <div class="mb-3">
+                            <label for="createCapacity" class="form-label text-white">Вместимость</label>
+                            <input type="text" id="createCapacity" name="Capacity"
+                                   class="form-control"
+                                   pattern="^[1-9]\d*$"
+                                   title="Вместимость может быть только положительным числом"
+                                   required/>
+                            <div class="invalid-feedback text-danger">
+                                Вместимость может быть только положительным числом.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="createIsAvailable" class="form-label text-danger">Доступность</label>
+                            <select name="IsAvailable" id="createIsAvailable" class="form-select">
+                                <option value="true">Доступна</option>
+                                <option value="false">Недоступна</option>
+                            </select>
+                            <div class="invalid-feedback text-danger">
+                                Пожалуйста, выберите доступность.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="createBranch" class="form-label text-white">Филиал</label>
+                            <select name="BranchId" id="createBranch" class="form-select" required>
+                                @foreach (var b in ViewBag.Branches)
+                                {
+                                    <option value="@b.Id">@b.Name</option>
+                                }
+                            </select>
+                            <div class="invalid-feedback text-danger">
+                                Пожалуйста, выберите филиал.
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-dark border-top-0">
+                            <button type="submit" class="btn btn-outline-light monday-school-color-blue" id="saveBtn">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#classrooms-table').DataTable({
+                columnDefs: [
+                {
+                    targets: 5,
+                    orderable: false
+                }
+            ],
+            language: {
+                lengthMenu: "Показать _MENU_ записей",
+                search: "Поиск:",
+                info: "",
+                infoFiltered: "(отфильтровано из _MAX_ записей)",
+                infoEmpty: "Не найдено подходящих записей",
+                zeroRecords: "Нет записей",
+                paginate: {
+                    previous: "<",
+                    next: ">"
+                }
+            },
+            initComplete: function () {
+                this.api()
+                    .columns()
+                    .every(function (){
+                        let column = this;
+                        let columnIndex = column.index();
+                        if (columnIndex !== 0 && columnIndex !== 3 && columnIndex !== 4 && columnIndex !== 5){
+                            let select = document.createElement('select');
+                            select.add(new Option(''));
+                            column.footer().replaceChildren(select);
+                            
+                            $(select).addClass('btn btn-dark');
+                            
+                            select.addEventListener('change', function () {
+                                column.search(select.value, {exact: true}).draw();
+                            });
+                            
+                            column.data().unique().sort().each(function (d, j){
+                                select.add(new Option(d));
+                            });
+                        }
+                    })
+            }
+            
+            });
+            (function () {
+                'use strict';
+                const form = document.getElementById('classroomForm');  // Получение формы с id 'classroomForm'
+                
+                form.addEventListener('sumbit', function (event) {  
+                    if (!form.checkValidity()) {    // Проверяем, валидна ли форма
+                        event.preventDefault();
+                        event.stopPropagation(); // Останавливаем распространение событие
+                    }
+                    form.classList.add('was-validated'); // Добавляем класс 'was-validated', чтобы показать сообщение о валидации
+                }, false);
+            })();
+            (function () {
+                'use strict';
+                const form = document.getElementById('editClassroomForm');
+                
+                form.addEventListener('sumbit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            })();
+            
+            $('#editClassroomModal').on('show.bs.modal', function (e) {
+                let button = $(e.relatedTarget);
+                let id = button.data('id');
+                let capacity = button.data('capacity');
+                let isavailable = button.data('isavailable');
+                let branchId = button.data('branchid');
+                
+                $('#editClassroomId').val(id);
+                $('#editCapacity').val(capacity);
+                $('#editIsAvailable').val(isavailable.toString());
+                $('#editBranch').val(branchId);
+            });
+            
+            $('#deleteClassroomModal').on('show.bs.modal', function (e) {
+                let button = $(e.relatedTarget);
+                let id = button.data('id');
+                let capacity = button.data('capacity');
+                let branch = button.data('branch');
+                $('#deletecapacity').text(capacity);
+                $('#deletebranch').text(branch);
+                $('#deleteClassroomId').val(id);
+            });
+            $('#deleteClassroomModal').on('hidden.bs.modal', function () {
+                $('#deletecapacity').text('');
+                $('#deletebranch').text('');
+                $('#deleteClassroomId').val('');
+            });
+        });
+    </script>
+}

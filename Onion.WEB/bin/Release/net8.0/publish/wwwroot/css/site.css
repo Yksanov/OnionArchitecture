@@ -42,3 +42,123 @@ body {
 .form-border {
   border-radius: 3%;
 }
+
+body {
+  display: flex;
+}
+
+/* Верхняя панель */
+.topbar {
+  width: 100%;
+  color: #fff;
+  padding: 0.6em 1.2em;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+
+.topbar .navbar-brand:hover {
+  text-decoration: none;
+}
+
+/* Стиль для кнопки, скрывающей/открывающей боковое меню */
+.menu-toggle-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.4em;
+  cursor: pointer;
+}
+
+.menu-toggle-btn:focus {
+  outline: none;
+}
+
+/* Боковая панель */
+.sidebar {
+  width: auto;
+  height: 100vh;
+  color: #fff;
+  padding: 70px 1.2em 1.2em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Скрытая боковая панель */
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+/* Фон при наведении на ссылку / кнопку*/
+.sidebar .nav-link:hover {
+  background-color: #495057;
+  border-radius: 0.6em;
+}
+
+.mt-6 {
+  margin-top: 5em;
+}
+
+/* Сдвигает содержимое влево при скрытой боковой панели */
+.content.sidebar-hidden {
+  margin-left: 0;
+}
+
+/* Стиль кнопки выпадающего меню */
+.dropdown {
+  position: relative;
+  display: block;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+.dropdown-btn:hover {
+  background-color: #495057;
+  border-radius: 0.6em;
+}
+
+/* Иконка выравнивается справа */
+.dropdown-btn i {
+  float: right;
+}
+
+/* Скрытое содержимое */
+.dropdown-content {
+  display: none;
+  flex-direction: column;
+  background-color: #343a40;
+  position: relative;
+  z-index: 1;
+  margin-left: 1em;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 0.5em 1em;
+  text-decoration: none;
+}
+
+/* Фон при наведении */
+.dropdown-content a:hover {
+  background-color: #495057;
+  border-radius: 0.6em;
+}
+
+/* Показ при открытии */
+.dropdown.open .dropdown-content {
+  display: flex;
+}
