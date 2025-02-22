@@ -162,3 +162,25 @@ body {
 .dropdown.open .dropdown-content {
   display: flex;
 }
+
+.dropdown-menu{
+  opacity: 0;  /* opacity - это элемент полностью невидимый*/
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu.show{
+  opacity: 1;
+  transform: translateY(0); /* Позиция по умолчанию */
+}
+
+#description{
+  width: 100%;
+  height: 150px;
+  resize: none;
+}
+
+#students-table tfoot select{
+  width: 100%;
+}
+

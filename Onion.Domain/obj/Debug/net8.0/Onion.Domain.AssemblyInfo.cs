@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Onion.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69583215e346dd867faad33f6b44bf1b586bed78")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c470286de4890de631b5e4c9efd75fd4de30074b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Onion.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Onion.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
