@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -105,5 +106,57 @@ public class NotificationController : Controller
         }
 
         return View(model);
+    }
+
+    [NonAction]
+    private async Task<int> GetUnreadNotifications()
+    {
+        List<Notification> notifications = await _notificationService.GetAllNotificationsAsync();
+        int count = notifications.Count(n => n.IsRead == false);
+        return count;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> CheckForUnreadNotifications()
+    {
+        int count = await GetUnreadNotifications();
+        if (count == 0)
+        {
+            return Json(new { success = false });
+        }
+
+        return Json(new { success = true, unreadCount = count });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> MarkAsRead(int id)
+    {
+        Notification notification = await _notificationService.GetNotificationByIdAsync(id);
+        if (notification.IsRead == false)
+        {
+            notification.IsRead = true;
+            await _notificationService.UpdateNotificationAsync(notification);
+            int count = await GetUnreadNotifications();
+            return Json(new { success = "true", unreadCount = count });
+        }
+
+        return Json(new { success = "false" });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> MarkAllAsRead()
+    {
+        List<Notification> notifications = await _notificationService.GetAllNotificationsAsync();
+        List<Notification> unreadNotifications = notifications.FindAll(n => n.IsRead == false);
+        if (unreadNotifications.Count > 0)
+        {
+            unreadNotifications.ForEach(n => n.IsRead = true);
+            foreach (var notification in unreadNotifications)
+            {
+                await _notificationService.UpdateNotificationAsync(notification);
+            }
+        }
+
+        return RedirectToAction("AllNotifications");
     }
 }

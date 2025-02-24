@@ -1,1 +1,103 @@
 @model IEnumerable<Onion.Domain.Entities.Notification>
+
+@{
+    ViewBag.Title = "All notifications";
+}
+
+<div class="mt-3">
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">  @* table-responsive для адаптивности таблицы *@
+            <strong id="unreadCounter"></strong>
+            <a class="btn btn-dark float-end mb-2" id="markAllAsRead"><i class="fa-solid fa-check text-success"></i> <span class="monday-school-color-blue">Отметить все как прочитанные</span></a>
+            <table id="notifications-table" class="display">
+                <thead class="bg-dark">
+                <tr>
+                    <th class="text-white text-center" style="width: 24px;">Тип</th>
+                    <th class="text-white text-center" style="width: 24px;">Тип</th>
+                    <th class="text-white text-center" style="width: 24px;">Тип</th>
+                    <th class="monday-school-color-blue text-center th-action" style="width: 24px;">Действия</th>
+                    <th class="text-white text-center" style="width: 4px;"></th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
+                </tfoot>
+                <tbody>
+                @foreach (var notification in Model)
+                {
+                    <tr data-child-value="@notification.Text" data-id="@notification.Id">
+                        <td class="text-center">@notification.NotificationType?.Name</td>
+                        <td id="isRead-@notification.Id" class="@(notification.IsRead ? "text-success" : "text-danger") text-center fw-bolder">
+                            @(notification.IsRead ? "Прочитано" : "Не прочитано")
+                        </td>
+                        <td class="text-center">@notification.CreationDate</td>
+                        <td>
+                            <div class="dropdown text-center">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="actionsDropdown" data-bs-toggle="dropdown">
+                                    <i class="fa-solid fa-bars"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    @if (@notification.IsRead == false)
+                                    {
+                                        <li id="mark-@notification.Id">
+                                            <a id="markLink-@notification.Id" class="dropdown-item text-success mark">
+                                                <i class="fa-solid fa-check"></i> Пометить как прочитанное
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a class="dropdown-item text-danger delete">
+                                                <i class="fa-solid fa-trash"></i> Удалить уведомление
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <h2 class="mt-3 text-center">В данной момент уведомлений нет.</h2>
+    }
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="deleteClassroomModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header bg-dark">
+                <h1 class="modal-title monday-school-color-gradient fs-5">Подтверждение</h1>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-white">Вы уверены, что хотите отметить все уведомления как прочитанные?</p>
+            </div>
+            <div class="modal-footer border-top-0">
+                <a type="button" id="confirmMarkAll" class="btn btn-outline-success monday-school-color-blue" asp-action="MarkAllAsRead" asp-controller="Notification">Подтвердить</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function format(value){
+            return '<div class="my-2 text-center">' + '<strong>' + value + '</strong>' + '</div>';     
+        } 
+    </script>
+}
