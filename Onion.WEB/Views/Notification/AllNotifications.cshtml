@@ -98,6 +98,131 @@
     <script>
         function format(value){
             return '<div class="my-2 text-center">' + '<strong>' + value + '</strong>' + '</div>';     
-        } 
+        }
+        $(document).ready(function() {
+            let table = new DataTable('notifications-table', {
+                colums: [
+                    {data: 'type'},
+                    {data: 'isRead'},
+                    {data: 'datetime'},
+                    {data: 'actions'},
+                    {
+                        className: 'dt-control',
+                        data: null,
+                        defaultContent: ''
+                    },
+                ],
+                order: [[2, 'asc']],
+                columnDefs: [  // Настройки для отдельных столбцов таблицы
+                    {
+                        targets: 4, // Индекс столбца "Открытие деталей" (начинается с 0)
+                        orderTable: false // Отключение сортировки для этого столбца
+                    },
+                    {
+                        targets: 3,  // Индекс столбца "Действия" (начинается с 0)
+                        orderTable: false // Отключение сортировки для этого столбца
+                    }
+                ],
+                
+                language: {
+                    lengthMenu: "Показать _MENU_ записей", // Заменяет "Show entries"
+                    search: "Поиск:", // Заменяет "Search:"
+                    info: "", // Заменяет "Showing to of entries"
+                    infoFiltered: "(отфильтровано из _MAX_ записей)", // Заменяет (filtered from total entries)
+                    infoEmpty: "Не найдено подходящих записей", // Заменяет Showing to of entries(если при сортировке)
+                    zeroRecords: "Нет записей", // Заменяет No matching records found (если при сортировке нет результатов)
+                    paginate: {
+                        previous: "<", // Заменяет "Previous
+                        next: ">" // Заменяет "Next"
+                    }
+                },
+                initComplete: function() { // добавление фильтрация
+                    this.api()
+                        .columns()
+                        .every(function () {
+                            let column = this;
+                            let columnIndex = column.index();
+                            if(columnIndex !== 3 && columnIndex !== 4)  // Условие для добавления фильтров под определенными столбцами
+                            {
+                                let select = document.createElement('select');
+                                select.add(new Option(''));
+                                column.footer().replaceChildren(select);
+                                
+                                $(select).addClass('btn btn-dark'); // Добавление стилей через класс для selects
+                                
+                                select.addEventListener('change', function () {
+                                    column.search(select.value, {exact: true}).draw(); 
+                                });
+                                
+                                column.data().unique().sort().each(function (d, j) {
+                                    select.add(new Option(d));
+                                });
+                            }
+                    });
+                    
+                }
+            });
+            table.on('click', 'td.dt-control', function (e) {
+                let tr = e.target.closest('tr');
+                let row = table.row(tr);
+                
+                if (row.child._isShown()){
+                    // закрытие дополнительное строки
+                    row.child.hide();
+                }
+                else {
+                    // открытие дополнительное строки
+                    row.child(format(tr.getAttribute("data-child-value"))).show();     
+                }
+            });
+            
+            $('#notifications-table tbody').on('click', '.delete', function () {
+                var row = $(this).closest('tr');
+                var rowId = row.data('id');
+                $.ajax({
+                    url: '@Url.Action("RemoveNotification", "Notification")',
+                    type: 'POST',
+                    data: {'id': rowId},
+                    success: function(response){
+                        if (response.success === "true"){
+                            table.row(row).remove().draw();
+                        }
+                    }
+                });
+            });
+            
+            $('#notifications-table tbody').on('click', '.mark', function () {
+                var row = $(this).closest('tr');
+                var rowId = row.data('id');
+                $.ajax({
+                    url: '@Url.Action("MarkAsRead", "Notification")',
+                    type: 'POST',
+                    data: {'id': rowId},
+                    success: function (response){
+                        if (response.success === "true")
+                        {
+                            $('#notificationCounter').text(response.unreadCount);
+                            $('#unreadCounter').text("Непрочитанных уведомлений: " + response.unreadCount);
+                            $('#id').attr("isRead", "True");
+                            $('#isRead-'+rowId).text("Прочитано").removeClass("text-danger").addClass("text-success");
+                            $('#markLink-'+rowId).remove();
+                            $('#mark-'+rowId).append('<li>' + '<a class="dropdown-item text-danger delete">' + '<i class="fa-solid fa-trash">' + '</i>' + 'Удалить уведомление' + '</a>' + '</li>');
+                        }
+                        if (response.unreadCount === 0){
+                            $('#notification-dot').css('display', 'none');
+                        }
+                    }
+                });
+            });
+            
+            $("#notificationMarkAll").on("click", function () {
+                $("#confirmModal").modal('show');
+            });
+            
+            $("#confirmMarkAll").on("click", function () {
+                $("#confirmModal").modal('hide');
+            });
+            
+        });
     </script>
 }
