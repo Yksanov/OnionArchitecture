@@ -67,4 +67,17 @@ public class RequestController : Controller
         await _requestService.RemoveRequestAsync(request);
         return RedirectToAction("AllRequests");
     }
+
+    [HttpPost]
+    public async Task<IActionResult> EditRequest(Request request)
+    {
+        if (request == null)
+        {
+            return NotFound();
+        }
+        
+        request.PreferredTime = request.PreferredTime.ToUniversalTime();
+        await _requestService.UpdateRequestAsync(request);
+        return RedirectToAction("AllRequests");
+    }
 }

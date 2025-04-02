@@ -1,0 +1,195 @@
+@model List<Onion.Domain.Entities.Request>
+
+
+@{
+    ViewBag.Title = "All Requests";
+}
+
+<div class="mt-3">
+    <div class="d-flex justify-content-end mb-3">
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#createRequestModal">
+            <i class="fa-solid fa-plus"></i> Добавить заявку
+        </button>
+    </div>
+
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table id="requests-table" class="display">
+                <thead class="bg-dark">
+                <tr>
+                    <th class="text-white text-center" style="width: 16%;">Имя</th>
+                    <th class="text-white text-center" style="width: 16%;">Фамилия</th>
+                    <th class="text-white text-center" style="width: 16%;">Телефон</th>
+                    <th class="text-white text-center" style="width: 16%;">Предпочтительное время</th>
+                    <th class="text-white text-center" style="width: 16%;">Тип группы</th>
+                    <th class="text-white text-center" style="width: 16%;">Название урока</th>
+                    <th class="monday-school-color-blue text-center th-action" style="width: 16%; padding-right: 10px !important;">Действия</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
+                </tfoot>
+                <tbody>
+                @foreach (var request in Model)
+                {
+                    <tr>
+                        <td class="text-center">@request.FirstName</td>
+                        <td class="text-center">@request.LastName</td>
+                        <td class="text-center">@request.Phone</td>
+                        <td class="text-center">@request.PreferredTime.ToString("HH:mm")</td>
+                        <td class="text-center">@request.GroupType.Name</td>
+                        <td class="text-center">@request.LessonName.Name</td>
+                        <div class="dropdown text-center">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="actionDropdown" data-bs-toggle="dropdown">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editRequestModal"
+                                            data-id="@request.Id" data-firstname="@request.FirstName"
+                                            data-lastname="@request.LastName" data-phone="@request.Phone"
+                                            data-preferredtime="@request.PreferredTime.ToString("HH:mm")"
+                                            data-grouptypeid="@request.GroupType.Id"
+                                            data-lessonnameid="@request.LessonName.Id">
+                                        <i class="fa-solid fa-pen-to-square"></i> Редактировать
+                                    </button>
+                                </li>
+                                @if (User.IsInRole("director"))
+                                {
+                                    <li>
+                                        <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteRequestModal"
+                                                data-id="@request.Id"
+                                                data-firstname="@request.FirstName"
+                                                data-lastname="@request.LastName">
+                                            <i class="fa-solid fa-trash me-2"></i> Удалить
+                                        </button>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <h2 class="mt-3 text-center">В данный момент нет заявок.</h2>
+    }
+</div>
+<div class="modal fade" id="editRequestModal" tabindex="-1" aria-labelledby="editRequestModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header bg-white">
+                <h1 class="modal-title monday-school-color-gradient fs-5" id="editRequestModalLabel">Редактировать заявку</h1>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editRequestForm" method="post" asp-action="EditRequest" novalidate>
+                <div class="modal-body">
+                    <input type="hidden" name="Id" id="editRequestId"/>
+                    <div class="mb-3">
+                        <label for="editFirstname" class="form-label text-white">Имя</label>
+                        <input type="text" id="editFirstname" name="firstname" class="form-control"
+                               pattern="[A-Za-zA-Яа-яЁё]{2,}"
+                               title="Имя должно содержать только буквы и быть не короче 2 символов"
+                               required>
+                        <div class="invalid-feedback text-danger">
+                            Имя должно содержать только буквы и быть не короче 2 символов.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editLastname" class="form-label text-white">Фамилия</label>
+                        <input type="text" id="editLastname" name="lastname" class="form-control"
+                               pattern="[A-Za-zA-Яа-яЁё]{2,}"
+                               title="Фамилия должна содержать только буквы и быть не короче 2 символов"
+                               required>
+                        <div class="invalid-feedback text-danger">
+                            Фамилия должна содержать только буквы и быть не короче 2 символов.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPhone" class="form-label text-white">Телефон</label>
+                        <input type="text" id="editPhone" name="lastname" class="form-control"
+                               pattern="^\+?[1-9]\d{1,14}$"
+                               title="Введите корректный номер телефона в формате +123456789"
+                               required>
+                        <div class="invalid-feedback text-danger">
+                            Введите корректный номер телефона в формате +123456789.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPreferredTime" class="form-label text-white">Предпочтительное время</label>
+                        <input type="time" id="editPreferredTime" name="preferredtime" class="form-control" required/>
+                        <div class="invalid-feedback text-danger">
+                            Пожалуйста, выберите время.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editGroupType" class="form-label text-white">Тип группы</label>
+                        <select name="GroupTypeId" id="editGroupType" class="form-select" required>
+                            @foreach (var a in ViewBag.GroupTypes)
+                            {
+                                <option value="@a.Id">@a.Name</option>
+                            }
+                        </select>
+                        <div class="invalid-feedback text-danger">
+                            Пожалуйста, выберите тип группы.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editLessonName" class="form-label text-white">Название урока</label>
+                        <select name="LessonNameId" id="editLessonName" class="form-select" required>
+                            @foreach (var b in ViewBag.LessonNames)
+                            {
+                                <option value="@b.Id">@b.Name</option>
+                            }
+                        </select>
+                        <div class="invalid-feedback text-danger">
+                            Пожалуйста, выберите название урока.
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="submit" class="btn btn-outline-light monday-school-color-blue">Сохранить изменения</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteRequestModal" tabindex="-1" aria-labelledby="deleteRequestModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header bg-white">
+                <h1 class="modal-title  monday-school-color-gradient fs-5" id="deleteRequestModalLabel">Удалить заявку</h1>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="deleteRequestForm" method="post" asp-action="RemoveRequest">
+                <div class="modal-body">
+                    <p class="text-white">Вы точно хотите удалить эту заявку(<span id="deletename"></span>, <span id="deletelastname"></span>)?</p>
+                    <input type="hidden" name="Id" id="deleteRequestId" />
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="submit" class="btn btn-outline-danger monday-school-color-blue">Удалить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createRequestModal" tabindex="-1" aria-labelledby="createRequestModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        
+    </div>
+</div>
